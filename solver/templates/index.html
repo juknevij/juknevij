@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+ <meta charset="utf-8"> 
+ 
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 4px;
+}
+
+tr:nth-child(even) {
+#    background-color: #dddddd;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+/*	$( document ).ready(function() {
+	$('#allcb').on('click', function () {
+				
+    $('tr td input[type="checkbox"]').prop('checked', function()
+    {
+		if 	($('#allcb').prop('value')=='Check all')
+		{ 
+		return true;   }
+		else { return false;}
+		
+		});
+		
+	
+   if ($(this).prop('value')=='Check all')
+	$(this).prop('value', 'Uncheck all');
+   else
+		$(this).prop('value', 'Check all');
+
+	
+		
+		
+});});*/
+
+$( document ).ready(function() {$('#allcb').change(function () {
+    $('tr td input[id="foods"]').prop('checked', $(this).prop('checked'));
+});});
+
+$( document ).ready(function() {$('#allcb2').change(function () {
+    $('tr td input[id="nutrients"]').prop('checked', $(this).prop('checked'));
+});});
+
+</script>
+
+</head>	
+   <body>
+	   
+	<div class="container">
+   <h3> Diet Problem Solver </h3>
+	<p>The Diet Problem, also known as the <a href="https://en.wikipedia.org/wiki/Stigler_diet">Stigler diet</a>, 
+	is a famous linear optimization problem. The problem is as follows: For a given nutrient requirement 
+	(calories, protein, fat, Vitamins, Minerals, etc.)
+	and a selected group of foods, find the foods that provide all the nutrients you need in one day's meals. 
+	at minimum cost.
+	<br/>
+	
+	To obtain the solution to this Linear Program, we can write a short program in Python to call <a href="https://github.com/coin-or/pulp">PuLP</a>’s
+	 modelling functions, which will then call a solver. The code for this study is found in <a href="http://github.com">Github</a>.
+	In this interactive demo, you can select the foods to be considered and specify 
+	the nutrient levels to be satisfied. You might be surprised at the contents of an optimized menu! 
+	</p>
+	
+<h4>Create your own optimized menu!</h4>
+<p>To create your own optimized menu, select the foods that you would like to consider in your menu and specify the nutritional constraints that you would like to satisfy.
+</p>
+	
+   <form action="/" method="post" name="checks">
+      <div style="width: 70%; margin: 0 auto">
+	  <div style="width: 100%; margin: 0 auto" >  <div  style="float:left;"> 
+		  <input type="submit"  name="submit" value="Solve Diet Problem" > 
+		   <input type="submit" name="submit" value="Print menu and nutrition facts"> </div>
+	    <div  style="float:right;">{% if status %} <p>Status:  {{status}},  {{'Cost: %3.2f' % cost}}</div></p> {% endif %}</div>
+
+
+	  	   
+ <!--   <th><input type="checkbox" id="allcb"  /></th> -->
+
+
+      <table >
+		  <tr>
+<th><input type="checkbox" id="allcb"  /> Select</th>   
+ <th>Food</th> 
+    <th>Price ($)</th>
+    <th>Weight (g) </th>
+  </tr>
+         {% for key, value in menu.iteritems() %}
+             
+           {% if solution[key] %}
+
+            <tr style="background-color: #dddddd;">
+            {% else %}
+            <tr>
+            {% endif %}
+
+			   {% if checked[key] %}
+			  <td> <input type ="checkbox" id="foods" name = "{{key}}" checked  /> </td>
+			   {% else %}
+			  <td> <input type ="checkbox" id="foods" name = "{{key}}"   /> </td>
+                 {% endif %}
+                 
+               <td> {{ key }} </td>
+               <td> {{ value }} </td>
+               
+                {% if solution[key] %}
+               <td> {{'%3.0f'% solution[key] }} </td>
+               
+              
+                             
+               {% endif%}
+
+           <!--    <td> <input type ="text" name = "val_{{key}}" /> </td> -->
+            </tr>
+            
+         {% endfor %}
+      </table>
+</div>
+
+<h4>Nutritional Requirements</h4>
+<ul>
+<li>Unselect the checkbox next to any nutrients that you do not want to consider.</li>
+<li>Edit the "Min" and "Max" values for the nutrient levels if you would like to change them from their defaults.</li>
+
+</ul>
+<div style="width: 70%; margin: 0 auto;">
+	
+	<table>
+<th><input type="checkbox" id="allcb2"  /> Select</th>  
+    <th>Name</th> 
+    <th>Min</th>
+    <th>Max </th>
+    <th>Weigth </th>
+  </tr>
+         {% for key, value in nutrients.iteritems() %}
+             
+            <tr>
+
+
+			   
+             {% if checked2[key] %}
+			  <td> <input type ="checkbox" id="nutrients" name = "nut_{{key}}_chk" checked  /> </td>
+			   {% else %}
+			  <td> <input type ="checkbox" id="nutrients" name = "nut_{{key}}_chk"   /> </td>
+                 {% endif %}			   
+                 
+               <td> {{ key }} </td>
+               <td> <input type="text" name="nut_{{ key }}_min" value = "{{ value[0] }}"> </td>
+               <td> <input type="text" name="nut_{{ key }}_max" value = "{{ value[1] }}"> </td>
+               {% if nut_sol[key] %}
+               <td> {{ '%3.1f'% nut_sol[key] }} </td>
+               
+              
+                             
+               {% endif%}
+                
+               
+              
+                             
+
+            </tr>
+            
+         {% endfor %}
+      </table></div>
+     </form> 
+	</div>
+  
+   </body>
+</html>

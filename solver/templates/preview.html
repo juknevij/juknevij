@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+ <meta charset="utf-8"> 
+ 
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 4px;
+}
+
+tr:nth-child(even) {
+#    background-color: #dddddd;
+}
+
+@import "compass/css3";
+
+.image {
+  width: 250px;
+  float: left;
+  margin: 20px;
+}
+body {
+  font-size: small;
+  line-height: 1.4;
+}
+p {
+  margin: 0;
+}
+
+.performance-facts {
+  border: 1px solid black;
+  margin: 20px;
+  float: left;
+  width: 280px;
+  padding: 0.5rem;
+  table {
+    border-collapse: collapse;
+  }
+}
+.performance-facts__title {
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 0 0.25rem 0;
+}
+.performance-facts__header {
+  border-bottom: 10px solid black;
+  padding: 0 0 0.25rem 0;
+  margin: 0 0 0.5rem 0;
+  p {
+    margin: 0;
+  }
+}
+.performance-facts__table {
+  width: 100%;
+  thead tr {
+    th, td {
+      border: 0;
+    }
+  }
+  th, td {
+    font-weight: normal;
+    text-align: left;
+    padding: 0.25rem 0;
+    border-top: 1px solid black; 
+    white-space: nowrap;
+  }
+  td {
+    &:last-child {
+      text-align: right;
+    }
+  }
+  .blank-cell {
+    width: 1rem;
+    border-top: 0;
+  }
+  .thick-row {
+    th, td {
+      border-top-width: 5px;
+    }
+  }
+}
+.small-info {
+  font-size: 0.7rem;
+}
+
+.performance-facts__table--small {
+  @extend .performance-facts__table;
+  border-bottom: 1px solid #999;
+  margin: 0 0 0.5rem 0;
+  thead {
+    tr {
+      border-bottom: 1px solid black; 
+    }
+  }
+  td {
+    &:last-child {
+      text-align: left;
+    }
+  }
+  th, td {
+    border: 0;
+    padding: 0;
+  }
+}
+
+.performance-facts__table--grid {
+  @extend .performance-facts__table;
+  margin: 0 0 0.5rem 0;
+  td {
+    &:last-child {
+      text-align: left;
+      &::before {
+        content: "•";
+        font-weight: bold;
+        margin: 0 0.25rem 0 0;
+      }
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+.thick-end {
+  border-bottom: 10px solid black;
+}
+.thin-end {
+  border-bottom: 1px solid black;
+}
+
+</style>
+
+</head>	
+   <body>
+	   
+	<div class="container">
+   <h3> Optimal Solution </h3>
+	<p>The Diet Problem, also known as the <a href="https://en.wikipedia.org/wiki/Stigler_diet">Stigler diet</a>, 
+	is a famous linear optimization problem. The problem is as follows: For a given nutrient requirement 
+	(calories, protein, fat, Vitamins, Minerals, etc.)
+	and a selected group of foods, find the foods that provide all the nutrients you need in one day's meals. 
+	at minimum cost.
+	<br/>
+	<br/>
+	</p>
+	<div class="table-responsive" style="float:left">
+	    <table class="table" >
+		  <tr>
+ <th>Food</th> 
+    <th>Weight (g) </th>
+  </tr>
+         {% for key, value in solution.iteritems() %}
+             
+            
+            <tr>
+
+			  
+                 {% if value %}
+               <td> {{ key }} </td>
+               <td> {{ '%3.0f'%  value }} </td>
+                 {% endif %}
+               
+              
+                             
+
+            </tr>
+            
+         {% endfor %}
+      </table>
+      </div>
+      <div style="float:right;"> <section class="performance-facts">
+  <header class="performance-facts__header">
+    <h1 class="performance-facts__title">Nutrition Facts</h1>
+ <!--   <p>Serving Size 1/2 cup (about 82g)
+    <p>Serving Per Container 8</p> -->
+  </header>
+  <table class="performance-facts__table">
+    <thead>
+      <tr>
+        <th colspan="3" class="small-info">
+          Amount Per Serving
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <b>Energy</b>
+          {{ '%3.f kcal' % nutrients['energy']}}
+        </th>
+        <td>
+          Calories from Fat
+          130
+        </td>
+      </tr>
+      <tr class="thick-row">
+        <td colspan="3" class="small-info">
+          <b>% Daily Value*</b>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Total Fat</b>
+{{ '%3.f g' % nutrients['fat']}}        </th>
+        <td>
+          <b>22%</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Saturated Fat
+          9g
+        </th>
+        <td>
+          <b>22%</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Trans Fat
+          0g
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Cholesterol</b>
+          {{ '%3.f mg' % nutrients['cholesterol']}}
+        </th>
+        <td>
+          <b>18%</b>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Sodium</b>
+          40mg
+        </th>
+        <td>
+          <b>2%</b>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Total Carb</b>
+{{ '%3.f g' % nutrients['carbohydrate']  }}        </th>
+        <td>
+          <b>6%</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Dietary Fiber
+          {{ '%3.f g' % nutrients['fiber']  }}
+        </th>
+        <td>
+          <b>4%</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Sugars
+          {{ '%3.f g' % nutrients['sugars, added']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr class="thick-end">
+        <th colspan="2">
+          <b>Protein</b>
+          {{ '%3.f g' % nutrients['protein']}}
+        </th>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <table class="performance-facts__table--grid">
+    <tbody>
+      <tr>
+        <td colspan="2">
+          Vitamin A
+{{'%3.1f%%' % rdi['vitamin a']}}         </td>
+        <td>
+          Vitamin C
+{{'%3.1f%%' % rdi['vitamin c']}}         </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+      Magnesium          
+{{'%3.1f%%' % rdi['magnesium']}}        </td>
+        <td>
+          Potassium
+          {{'%3.1f%%' % rdi['potassium']}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Vitamin K
+{{'%3.1f%%' % rdi['vitamin k']}}         </td>
+        <td>
+          Vitamin E
+{{'%3.1f%%' % rdi['vitamin e']}}         </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Zinc
+{{'%3.1f%%' % rdi['zinc']}}         </td>
+        <td>
+          Copper
+{{'%3.1f%%' % rdi['copper']}}         </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Niacin
+{{'%3.1f%%' % rdi['niacin']}}         </td>
+        <td>
+          Vitamin B6
+{{'%3.1f%%' % rdi['vitamin b6']}}         </td>
+      </tr>      
+      <tr >
+        <td colspan="2">
+          Calcium
+{{'%3.1f%%' % rdi['calcium']}}         </td>
+        <td>
+          Iron
+{{'%3.1f%%' % rdi['iron']}}         </td>
+      </tr>
+      <tr class="thin-end">
+        <td colspan="2">
+          Omega3
+          {{ '%3.1f g' % nutrients['omega 3']}}
+        </td>
+        <td>
+          Omega6
+          {{ '%3.1f g' % nutrients['omega 6']}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+ 
+  <p class="small-info">
+    Calories per gram:
+  </p>
+  <p class="small-info text-center">
+    Fat 9
+    &bull;
+    Carbohydrate 4
+    &bull;
+    Protein 4
+  </p>
+  
+</section></div>
+	</div>
+
+ 
+   </body>
+</html>
+	

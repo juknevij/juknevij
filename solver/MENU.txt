@@ -1,0 +1,65 @@
+~Broccoli, raw~^40^0.68
+~Tomatoes, red, ripe, raw, year round average~^20^0.24
+~Carrots, raw~^15^0.09
+~Seeds, chia seeds, dried~^60^
+~Peanuts, all types, raw~^50^1.97
+~Pumpkin, cooked, boiled, drained, without salt~^20^0.05
+~Fish, cod, Atlantic, cooked, dry heat~^120^
+~Bread, multi-grain (includes whole-grain)~^20^0.5
+~Oil, olive, salad or cooking~^150^0.29
+~Oranges, raw, all commercial varieties~^10^1.0
+~Spices, turmeric, ground~^200^10
+~Yogurt, plain, whole milk, 8 grams protein per 8 ounce~^25^0.04
+~Dulce de Leche~^30^0
+~Beef, flank, steak, separable lean and fat, trimmed to 0" fat, choice, raw~^100^0.05
+~Chard, swiss, cooked, boiled, drained, without salt~^30^1
+~Pasta, cooked, unenriched, without added salt~^40^0.1
+~Cheese, parmesan, hard~^250^0
+~Fish, sardine, Atlantic, canned in oil, drained solids with bone~^300^
+~Egg, whole, cooked, hard-boiled~^40^0.04
+~Potatoes, baked, skin, without salt~^10^0.19
+~Oats~^36^0.34
+~Cocoa, dry powder, unsweetened~^150^13.74
+~Seeds, flaxseed~^60^0.8
+~Fish, tuna, white, canned in water, drained solids~^200^0
+~Nuts, walnuts, english~^280^16
+~Nuts, almonds~^240^0.28
+~Honey~^70^0.15
+~Peppers, sweet, red, raw~^40^0.91
+~Parsley, fresh~^50^1.0
+~Avocados, raw, all commercial varieties~^100^0.44
+~Grapes, red or green (European type, such as Thompson seedless), raw~^50^0.33
+~Bananas, raw~^20^0.34
+~Kiwifruit, green, raw~^30^1.02
+~Apples, raw, with skin~^15^0.4
+~Lentils, raw~^35^0.66
+~Chickpeas (garbanzo beans, bengal gram), mature seeds, raw~^35^0.22
+~Quinoa, uncooked~^100^3.2
+~Squash, summer, zucchini, includes skin, raw~^30^0.1
+~Crustaceans, shrimp, raw (not previously frozen)~^140^0
+~Garlic, raw~^200^0.22
+~Beets, raw~^25^1.68
+~Eggplant, cooked, boiled, drained, without salt~^25^0.932
+~Brussels sprouts, raw~^100^0.89
+~Cabbage, red, raw~^25^1.78
+~Cauliflower, raw~^50^0.35
+~Celery, raw~^25^0.06
+~Cucumber, with peel, raw~^30^0.04
+~Leeks, (bulb and lower leaf-portion), raw~^40^0.16
+~Lettuce, cos or romaine, raw~^40^0.21
+~Onions, sweet, raw~^7^0.22
+~Radishes, raw~^50^0.4
+~Spinach, raw~^30^0.89
+~Sweet potato, cooked, baked in skin, flesh, without salt~^15^0.33
+~Nuts, pecans~^300^10
+~Seeds, sesame seeds, whole, roasted and toasted~^60^1.21
+~Seeds, sunflower seed kernels, dried~^60^5.39
+~Chicken breast, oven-roasted, fat-free, sliced~^60^0
+~Beef, variety meats and by-products, liver, cooked, pan-fried~^50^0
+~Pork, fresh, loin, whole, separable lean and fat, cooked, roasted~^100^0
+~Pork, fresh, variety meats and by-products, kidneys, cooked, braised~^50^0
+~Lamb, domestic, loin, separable lean only, trimmed to 1/4" fat, choice, raw~^130^0
+~Corn flour, whole-grain, yellow~^15^0
+~Rice, white, long-grain, regular, unenriched, cooked without salt~^30^0
+~Milk, whole, 3.25% milkfat, with added vitamin D~^20^0
+~Cheese, mozzarella, whole milk~^100^0
